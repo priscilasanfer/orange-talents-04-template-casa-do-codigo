@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = {EmailUnicoValidator.class})
 public @interface EmailUnico {
 
-    String message() default "O email já está em uso";
+    String message() default "{EmailUnico}";
 
     Class<?>[] groups() default {};
 
