@@ -1,4 +1,4 @@
-package br.com.zupacademy.priscila.casadocodigo.exception;
+package br.com.zupacademy.priscila.casadocodigo.utils.exception;
 
 public class FieldErrorOutputDto {
     private String field;

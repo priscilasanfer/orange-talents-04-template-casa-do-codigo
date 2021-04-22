@@ -1,4 +1,4 @@
-package br.com.zupacademy.priscila.casadocodigo.exception;
+package br.com.zupacademy.priscila.casadocodigo.utils.exception;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -21,18 +21,17 @@ public class ValidationErrorHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ValidationErrorsOutputDTO handleValidationError(MethodArgumentNotValidException exception){
-        List<ObjectError> globalErros = exception.getBindingResult().getGlobalErrors();
+    public ValidationErrorsOutputDto handleValidationError(MethodArgumentNotValidException exception){
+        List<ObjectError> globalErrors = exception.getBindingResult().getGlobalErrors();
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
 
-        return buildValidationErrors(globalErros, fieldErrors);
-
+        return buildValidationErrors(globalErrors, fieldErrors);
     }
 
-    private ValidationErrorsOutputDTO buildValidationErrors(List<ObjectError> globalErros, List<FieldError> fieldErrors) {
-        ValidationErrorsOutputDTO validationErrors = new ValidationErrorsOutputDTO();
+    private ValidationErrorsOutputDto buildValidationErrors(List<ObjectError> globalErrors, List<FieldError> fieldErrors) {
+        ValidationErrorsOutputDto validationErrors = new ValidationErrorsOutputDto();
 
-        globalErros.forEach( error -> validationErrors.addError(getErrorMessage(error)));
+        globalErrors.forEach( error -> validationErrors.addError(getErrorMessage(error)));
 
         fieldErrors.forEach(error -> {
             String errorMessage = getErrorMessage(error);
