@@ -9,14 +9,14 @@ import java.lang.annotation.Target;
 
 @Target({ ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = {ValorUnicoValidator.class})
-public @interface ValorUnico {
+@Constraint(validatedBy = {UniqueValueValidator.class})
+public @interface UniqueValue {
 
     Class<?> targetClass();
 
     String fieldName();
 
-    String message() default "{ValorUnico}";
+    String message() default "O valor do campo {0} já está em uso.";
 
     Class<?>[] groups() default {};
 

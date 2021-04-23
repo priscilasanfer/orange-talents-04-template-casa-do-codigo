@@ -1,12 +1,12 @@
 package br.com.zupacademy.priscila.casadocodigo.categoria;
 
-import br.com.zupacademy.priscila.casadocodigo.utils.validation.ValorUnico;
+import br.com.zupacademy.priscila.casadocodigo.utils.validation.UniqueValue;
 
 import javax.validation.constraints.NotBlank;
 
 public class NovaCategoriaRequest {
 
-    @NotBlank @ValorUnico(targetClass = Categoria.class, fieldName = "nome")
+    @NotBlank @UniqueValue(targetClass = Categoria.class, fieldName = "nome")
     private String nome;
 
     @Deprecated
