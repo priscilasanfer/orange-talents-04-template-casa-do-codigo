@@ -29,6 +29,8 @@ public class Autor {
     @CreationTimestamp
     private OffsetDateTime instanteCriacao;
 
+    @Deprecated
+    public Autor() {}
 
     public Autor(@NotBlank String nome,
                  @NotBlank @Email String email,
