@@ -7,7 +7,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 
-public class ValorUnicoValidator implements ConstraintValidator<ValorUnico, Object> {
+public class ValorUnicoValidator implements ConstraintValidator<UniqueValue, Object> {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -17,7 +17,7 @@ public class ValorUnicoValidator implements ConstraintValidator<ValorUnico, Obje
     private Class<?> targetClass;
 
     @Override
-    public void initialize(ValorUnico constraintAnnotation) {
+    public void initialize(UniqueValue constraintAnnotation) {
         fieldName = constraintAnnotation.fieldName();
         targetClass = constraintAnnotation.targetClass();
     }
