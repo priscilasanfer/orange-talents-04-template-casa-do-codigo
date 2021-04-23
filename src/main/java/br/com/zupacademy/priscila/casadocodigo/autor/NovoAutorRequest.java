@@ -1,6 +1,6 @@
 package br.com.zupacademy.priscila.casadocodigo.autor;
 
-import br.com.zupacademy.priscila.casadocodigo.utils.validation.EmailUnico;
+import br.com.zupacademy.priscila.casadocodigo.utils.validation.ValorUnico;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -11,7 +11,7 @@ public class NovoAutorRequest {
     @NotBlank
     private String nome;
 
-    @NotBlank @Email @EmailUnico
+    @NotBlank @Email @ValorUnico(targetClass = Autor.class, fieldName = "email")
     private String email;
 
     @NotBlank @Size(max = 400)

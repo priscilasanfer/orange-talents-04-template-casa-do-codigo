@@ -9,15 +9,17 @@ import java.lang.annotation.Target;
 
 @Target({ ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = {EmailUnicoValidator.class})
-public @interface EmailUnico {
+@Constraint(validatedBy = {ValorUnicoValidator.class})
+public @interface ValorUnico {
 
-    String message() default "{EmailUnico}";
+    Class<?> targetClass();
+
+    String fieldName();
+
+    String message() default "{ValorUnico}";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
-
-    String value() default "" ;
 
 }
