@@ -1,16 +1,13 @@
 package br.com.zupacademy.priscila.casadocodigo.livro;
 
-import br.com.zupacademy.priscila.casadocodigo.categoria.NovaCategoriaResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/livros")
@@ -25,4 +22,10 @@ public class LivroController {
         manager.persist(novoLivro);
         return ResponseEntity.ok(new NovoLivroResponse(novoLivro));
     }
+
+    @GetMapping
+    public List<ListaLivrosResponse> listar(){
+        return ListaLivrosResponse.toModel(manager);
+    }
+
 }

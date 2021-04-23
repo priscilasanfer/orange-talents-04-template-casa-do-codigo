@@ -50,6 +50,9 @@ public class Livro {
     @Valid
     private Autor autor;
 
+    @Deprecated
+    public Livro() {}
+
     public Livro(@NotBlank String titulo,
                  @NotBlank @Size(max = 500) String resumo,
                  String sumario,
