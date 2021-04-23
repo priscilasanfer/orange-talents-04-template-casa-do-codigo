@@ -2,6 +2,7 @@ package br.com.zupacademy.priscila.casadocodigo.livro;
 
 import br.com.zupacademy.priscila.casadocodigo.autor.Autor;
 import br.com.zupacademy.priscila.casadocodigo.categoria.Categoria;
+import br.com.zupacademy.priscila.casadocodigo.utils.validation.ExistsId;
 import br.com.zupacademy.priscila.casadocodigo.utils.validation.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -22,11 +23,11 @@ public class NovoLivroRequest {
     private String sumario;
 
     @NotNull
-    @Min(value = 20)
+    @Min(20)
     private BigDecimal preco;
 
     @NotNull
-    @Min(value = 100)
+    @Min(100)
     private Integer numeroDePaginas;
 
     @NotBlank @UniqueValue(targetClass = Livro.class, fieldName = "isbn")
@@ -36,11 +37,11 @@ public class NovoLivroRequest {
     @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate dataDePublicacao;
 
-    @NotNull
-    private Long categoria_id;
+    @NotNull @ExistsId(domainClass = Autor.class, fieldName = "id")
+    private Long categoriaId;
 
-    @NotNull
-    private Long autor_id;
+    @NotNull @ExistsId(domainClass = Autor.class, fieldName = "id")
+    private Long autorId;
 
     public NovoLivroRequest(@NotBlank String titulo,
                             @NotBlank @Size(max = 500) String resumo,
@@ -48,9 +49,8 @@ public class NovoLivroRequest {
                             @NotNull @Min(value = 20) BigDecimal preco,
                             @NotNull @Min(value = 100) Integer numeroDePaginas,
                             @NotBlank String isbn,
-                            @Future LocalDate dataDePublicacao,
-                            @NotNull Long categoria_id,
-                            @NotNull Long autor_id) {
+                            @NotNull Long categoriaId,
+                            @NotNull Long autorId) {
         this.titulo = titulo;
         this.resumo = resumo;
         this.sumario = sumario;
@@ -58,8 +58,8 @@ public class NovoLivroRequest {
         this.numeroDePaginas = numeroDePaginas;
         this.isbn = isbn;
         this.dataDePublicacao = dataDePublicacao;
-        this.categoria_id = categoria_id;
-        this.autor_id = autor_id;
+        this.categoriaId = categoriaId;
+        this.autorId = autorId;
     }
 
     public String getTitulo() {
@@ -90,17 +90,25 @@ public class NovoLivroRequest {
         return dataDePublicacao;
     }
 
-    public Long getCategoria_id() {
-        return categoria_id;
+    public Long getCategoriaId() {
+        return categoriaId;
     }
 
-    public Long getAutor_id() {
-        return autor_id;
+    public Long getAutorId() {
+        return autorId;
+    }
+
+    /*
+    Para Serialização pelo Jackson pois não estava conseguindo
+    fazer pelo construtor
+     */
+    public void setDataDePublicacao(LocalDate dataDePublicacao) {
+        this.dataDePublicacao = dataDePublicacao;
     }
 
     public Livro toModel(EntityManager manager){
-        Categoria categoria = manager.find(Categoria.class, categoria_id);
-        Autor autor = manager.find(Autor.class, autor_id);
+        @NotNull Categoria categoria = manager.find(Categoria.class, categoriaId);
+        @NotNull Autor autor = manager.find(Autor.class, autorId);
 
         return new Livro(
                 this.titulo,

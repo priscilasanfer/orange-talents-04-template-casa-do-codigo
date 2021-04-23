@@ -56,7 +56,7 @@ public class Livro {
                  @NotNull @Min(20) BigDecimal preco,
                  @NotNull @Min(100) Integer numeroDePaginas,
                  @NotBlank String isbn,
-                 @Future LocalDate dataDePublicacao,
+                 @Future @NotNull LocalDate dataDePublicacao,
                  @NotNull @Valid Categoria categoria,
                  @NotNull @Valid Autor autor) {
         this.titulo = titulo;
