@@ -4,7 +4,12 @@ import br.com.zupacademy.priscila.casadocodigo.autor.Autor;
 import br.com.zupacademy.priscila.casadocodigo.categoria.Categoria;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
@@ -17,6 +22,7 @@ public class Livro {
     private Long id;
 
     @NotBlank
+    @Column(unique = true)
     private String titulo;
 
     @NotBlank
@@ -34,6 +40,7 @@ public class Livro {
     private Integer numeroDePaginas;
 
     @NotBlank
+    @Column(unique = true)
     private String isbn;
 
     @Future
