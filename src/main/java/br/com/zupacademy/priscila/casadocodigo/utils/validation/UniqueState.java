@@ -7,15 +7,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target({ ElementType.FIELD})
+@Target({ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.TYPE_USE})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = {ExistsIdValidator.class})
-public @interface ExistsId {
-    Class<?> domainClass();
+@Constraint(validatedBy = {UniqueStateValidator.class})
+public @interface UniqueState {
 
-    String fieldName();
-
-    String message() default "O valor do campo {0} já está em uso.";
+    String message() default "Já tem um estado com esse nome para esse Pais";
 
     Class<?>[] groups() default {};
 
