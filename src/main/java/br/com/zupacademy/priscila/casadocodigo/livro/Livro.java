@@ -22,25 +22,29 @@ public class Livro {
     private Long id;
 
     @NotBlank
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String titulo;
 
     @NotBlank
     @Size(max = 500)
+    @Column(nullable = false)
     private String resumo;
 
+    @Column(columnDefinition = "text", nullable = false)
     private String sumario;
 
     @NotNull
     @Min(20)
+    @Column(nullable = false)
     private BigDecimal preco;
 
     @NotNull
     @Min(100)
+    @Column(nullable = false)
     private Integer numeroDePaginas;
 
     @NotBlank
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String isbn;
 
     @Future

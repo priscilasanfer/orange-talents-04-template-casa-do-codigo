@@ -2,6 +2,7 @@ package br.com.zupacademy.priscila.casadocodigo.estado;
 
 import br.com.zupacademy.priscila.casadocodigo.pais.Pais;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,9 +19,11 @@ public class Estado {
     private Long id;
 
     @NotBlank
+    @Column(nullable = false)
     private String nome;
 
-    @NotNull @ManyToOne
+    @NotNull
+    @ManyToOne
     private Pais pais;
 
     @Deprecated

@@ -2,13 +2,11 @@ package br.com.zupacademy.priscila.casadocodigo.estado;
 
 import br.com.zupacademy.priscila.casadocodigo.pais.Pais;
 import br.com.zupacademy.priscila.casadocodigo.utils.validation.ExistsId;
-import br.com.zupacademy.priscila.casadocodigo.utils.validation.UniqueState;
 
 import javax.persistence.EntityManager;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@UniqueState
 public class NovoEstadoRequest {
 
     @NotBlank

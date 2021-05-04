@@ -21,26 +21,32 @@ public class Cliente {
     private Long id;
 
     @Email
-    @NotBlank @Column(unique = true)
+    @NotBlank
+    @Column(unique = true)
     private String email;
 
     @NotBlank
+    @Column(nullable = false)
     private String nome;
 
     @NotBlank
+    @Column(nullable = false)
     private String sobrenome;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     @NotBlank
     private String documento;
 
     @NotBlank
+    @Column(nullable = false)
     private String endereco;
 
     @NotBlank
+    @Column(nullable = false)
     private String complemento;
 
     @NotBlank
+    @Column(nullable = false)
     private String cidade;
 
     @NotNull
@@ -48,12 +54,14 @@ public class Cliente {
     private Pais pais;
 
     @ManyToOne
-    private Estado estado; //(caso aquele pais tenha estado)
+    private Estado estado;
 
     @NotBlank
+    @Column(nullable = false)
     private String telefone;
 
     @NotBlank
+    @Column(nullable = false)
     private String cep;
 
     @Deprecated

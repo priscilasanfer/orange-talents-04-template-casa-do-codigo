@@ -2,6 +2,7 @@ package br.com.zupacademy.priscila.casadocodigo.autor;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,12 +20,17 @@ public class Autor {
     private Long id;
 
     @NotBlank
+    @Column(nullable = false)
     private String nome;
 
-    @NotBlank @Email @JoinColumn(unique = true)
+    @NotBlank
+    @Email
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @NotBlank @Size(max = 400)
+    @NotBlank
+    @Size(max = 400)
+    @Column(nullable = false)
     private String descricao;
 
     @CreationTimestamp
