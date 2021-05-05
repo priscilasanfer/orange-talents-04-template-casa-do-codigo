@@ -5,6 +5,8 @@ import br.com.zupacademy.priscila.casadocodigo.pais.Pais;
 import br.com.zupacademy.priscila.casadocodigo.utils.validation.Documento;
 import br.com.zupacademy.priscila.casadocodigo.utils.validation.ExistsId;
 import br.com.zupacademy.priscila.casadocodigo.utils.validation.UniqueValue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.validation.constraints.Email;
@@ -12,6 +14,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class NovoClienteRequest {
+
+    private final Logger logger = LoggerFactory.getLogger(NovoClienteRequest.class);
 
     @Email
     @NotBlank
@@ -136,6 +140,8 @@ public class NovoClienteRequest {
             Estado estado = manager.find(Estado.class, estadoId);
             cliente.setEstado(estado);
         }
+
+        logger.info("Criando novo cliente nome={}, documento={}", cliente.getNome(), cliente.getDocumento());
 
         return cliente;
     }
