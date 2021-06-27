@@ -16,6 +16,8 @@
 	<properties>
 		<java.version>11</java.version>
 		<ch.qos.logback.version>1.2.3</ch.qos.logback.version>
+		<logback.version>6.4</logback.version>
+		<contrib.version>3.2.2</contrib.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -51,12 +53,18 @@
 		<dependency>
 			<groupId>net.logstash.logback</groupId>
 			<artifactId>logstash-logback-encoder</artifactId>
-			<version>6.4</version>
+			<version>${logback.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-registry-prometheus</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.opentracing.contrib</groupId>
+			<artifactId>opentracing-spring-jaeger-cloud-starter</artifactId>
+			<version>${contrib.version}</version>
 		</dependency>
 
 	</dependencies>
